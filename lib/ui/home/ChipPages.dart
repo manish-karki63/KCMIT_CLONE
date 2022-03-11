@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kcmit/model/DrawerModel.dart';
+import 'package:kcmit/ui/faculty/FacultyPage.dart';
 
 class ChipPages extends StatefulWidget {
   const ChipPages({ Key? key }) : super(key: key);
@@ -9,10 +11,22 @@ class ChipPages extends StatefulWidget {
 
 class _ChipPagesState extends State<ChipPages> { 
 
+  DrawerModel? dModel = new DrawerModel();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+  }
+
+  void changeValues(){
+    String? abc = dModel!.rTitle();
+    Widget? page = dModel!.rPages();
+    setState(() {
+     // drawerSelected = abc!;
+      Navigator.pop(context);
+      //_currentPage = page!;
+    });
   }
 
   @override
@@ -25,7 +39,8 @@ class _ChipPagesState extends State<ChipPages> {
           children: <Widget>[
             InkWell(
               onTap: () {
-                
+                //dModel!.setValue("Faculty", FacultyPage());
+                //changeValues();
               },
               child: display("Faculty", "lib/assets/home/faculty.png"),
             ),

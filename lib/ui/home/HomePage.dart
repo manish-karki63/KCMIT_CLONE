@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kcmit/model/DrawerModel.dart';
 import 'package:kcmit/ui/about/About.dart';
 import 'package:kcmit/ui/attendance/AttendancePage.dart';
 import 'package:kcmit/ui/blog/Blog.dart';
@@ -23,17 +24,19 @@ class _HomePageState extends State<HomePage> {
 
   String drawerSelected = "KCMITians";
   Widget _currentPage = HomePageContainer();
+  DrawerModel? dModel = new DrawerModel();
 
   @override
   void initState() {
     super.initState();
   }
-
-  void changeValue(String title, Widget pages){
+  void changeValues(){
+    String? abc = dModel!.rTitle();
+    Widget? page = dModel!.rPages();
     setState(() {
-      drawerSelected = title;
+      drawerSelected = abc!;
       Navigator.pop(context);
-      _currentPage = pages;
+      _currentPage = page!;
     });
   }
 
@@ -83,56 +86,65 @@ class _HomePageState extends State<HomePage> {
                 leading: Icon(Icons.home),
                 title: Text("Home"),
                 onTap: (){
-                  changeValue('KCMITians', HomePageContainer());
+                  dModel!.setValue('KCMITians', HomePageContainer());
+                  changeValues();
+
                 },
               ),
               new ListTile(
                 leading: Icon(Icons.description_sharp),
                 title: Text("Notice"),
                 onTap: () {
-                  changeValue("Notice", NoticePage());
+                  dModel!.setValue("Notice", NoticePage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
                 leading: Icon(Icons.download_sharp),
                 title: Text("Resource"),
                 onTap: () {
-                  changeValue("Resources", ResourcesPage());
+                  dModel!.setValue("Resources", ResourcesPage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
                 leading: Icon(Icons.assignment_turned_in_sharp),
                 title: Text("Attendance"),
                 onTap: () {
-                  changeValue("Attendance", AttendancePage());
+                  dModel!.setValue("Attendance", AttendancePage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
                 leading: Icon(Icons.date_range_sharp),
                 title: Text("Academic Calender"),
                 onTap: () {
-                  changeValue("Academic Calender", Calender());
+                  dModel!.setValue("Academic Calender", Calender());
+                  changeValues();
                 },
               ),
               new ListTile(
                 leading: Icon(Icons.photo_library_sharp),
                 title: Text("Gallery"),
                 onTap: () {
-                  changeValue("Gallery", GalleryPage());
+                  dModel!.setValue("Gallery", GalleryPage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
                 leading: Icon(Icons.format_bold_sharp),
                 title: Text("Blog"),
                 onTap: () {
-                  changeValue("Blog", Blog());
+                  dModel!.setValue("Blog", Blog());
+                  changeValues();
                 }, 
               ),
               new ListTile(
                 leading: Icon(Icons.person),
                 title: Text("Faculty"),
                 onTap: () {
-                  changeValue("Faculty", FacultyPage());
+                  dModel!.setValue("Faculty", FacultyPage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
@@ -147,7 +159,8 @@ class _HomePageState extends State<HomePage> {
                 leading: Icon(Icons.assignment_turned_in_sharp),
                 title: Text("Result"),
                 onTap: () {
-                  changeValue("Result", ResultPage());
+                  dModel!.setValue("Result", ResultPage());
+                  changeValues();
                 }, 
               ),
               new ListTile(
